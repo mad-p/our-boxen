@@ -1,10 +1,10 @@
 require boxen::environment
 require homebrew
-require gcc
+#require gcc
 
 Exec {
   group       => 'staff',
-  logoutput   => on_failure,
+  logoutput   => true, #on_failure,
   user        => $boxen_user,
 
   path => [
@@ -56,7 +56,7 @@ node default {
   include dnsmasq
   include git
   include hub
-  include nginx
+  # include nginx
 
   # fail if FDE is not enabled
   if $::root_encrypted == 'no' {
@@ -67,7 +67,7 @@ node default {
   # include nodejs::v0_4
   # include nodejs::v0_6
   # include nodejs::v0_8
-  include nodejs::v0_10
+  # include nodejs::v0_10
 
   # default ruby versions
   # include ruby::1_8_7
@@ -80,7 +80,8 @@ node default {
     [
       'ack',
       'findutils',
-      'gnu-tar'
+      'gnu-tar',
+      'wget'
     ]:
   }
 
